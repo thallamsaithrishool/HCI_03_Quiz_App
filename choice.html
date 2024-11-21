@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/7b/dc/e7/7bdce75d64ba8f75d7b71b14b23e411e.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 2px 2px 2px 2px gray;
+            margin: 30px;
+            padding: 20px;
+            max-width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        header {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="text-white text-center py-4">
+        <h1>Welcome to Our Homepage</h1>
+        <div>
+            <a href="index.html" class="text-white mx-3">Homepage</a>
+            <a href="quiz.html" class="text-white mx-3">Login</a>
+
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://tse3.mm.bing.net/th?id=OIP.-ZUY2DbID8cqzUs7UGxy9gHaE6&pid=Api&P=0&h=180"
+                        alt="C Language">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">C Language</h5>
+                        <p class="card-text">C is a foundational programming language for efficient coding.</p>
+                        <a href="c.html" class="btn btn-primary">Start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://wallpapercave.com/wp/wp7250277.jpg" alt="Java">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Java</h5>
+                        <p class="card-text">Java is a versatile language for building robust applications.</p>
+                        <a href="java.html" class="btn btn-primary">Start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://tse2.mm.bing.net/th?id=OIP.d65sVJvqaaVgqfpTYhmxLwHaDt&pid=Api&P=0&h=180"
+                        alt="Python">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Python</h5>
+                        <p class="card-text">Python is a versatile and beginner-friendly programming language.</p>
+                        <a href="python.html" class="btn btn-primary">Start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.6R1_OsQ8-uiD0hAzYZQP5AHaE0&pid=Api&P=0&h=180" alt="Go">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Go</h5>
+                        <p class="card-text">Go is a statically typed, compiled language known for its simplicity and
+                            performance.</p>
+                        <a href="go.html" class="btn btn-primary">Start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://tse2.mm.bing.net/th?id=OIP.c9BbPNmGFrhbXYTdOTG6FAHaFj&pid=Api&P=0&h=180"
+                        alt="C++">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">C++</h5>
+                        <p class="card-text">C++ is a versatile, high-performance language used for system and
+                            application software.
+                        </p>
+                        <a href="c++.html" class="btn btn-primary">Start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://tse3.mm.bing.net/th?id=OIP.AKeY2_qNUVsqBqdybsQGlwHaEK&pid=Api&P=0&h=180"
+                        alt="SQL">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">SQL</h5>
+                        <p class="card-text">SQL is a powerful language used for managing and querying relational
+                            databases.</p>
+                        <a href="sql.html" class="btn btn-primary">Start</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

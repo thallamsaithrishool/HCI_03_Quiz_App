@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/7b/dc/e7/7bdce75d64ba8f75d7b71b14b23e411e.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            color: #0056b3;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        .app {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .quiz-section {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button.next-btn {
+            background-color: #0466bb;
+            color: white;
+            margin: 0 auto;
+            display: block;
+        }
+
+        button.next-btn:hover {
+            background-color: #0354a6;
+        }
+
+        button.btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+        .score-card {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .score-card h2 {
+            margin: 0;
+            padding: 10px;
+        }
+
+        .score-card .final-btn {
+            margin-top: 20px;
+        }
+
+        #score {
+            font-size: 18px;
+        }
+
+        .selected {
+            background-color: #0466bb;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome Go Quiz</h1>
+        <div>
+            <a href="index.html">Homepage</a>
+            <a href="quiz.html">Login</a>
+            <a href="#">Settings</a>
+        </div>
+    </header>
+
+    <div class="app">
+        <div id="quiz-section" class="quiz-section">
+            <h1>Simple Quiz</h1>
+            <div class="quiz">
+                <h2 id="question">Question goes here</h2>
+                <div id="answer-buttons" class="btn-container"></div>
+                <button id="next-btn" class="next-btn">Next</button>
+            </div>
+            <div id="score-card" class="score-card">
+                <h2>Score</h2>
+                <p id="score">0 / 0 (0%)</p>
+                <button id="restart-btn" class="next-btn">Restart</button>
+                <button id="feedback-btn" class="next-btn final-btn">Feedback</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What are the different types of declaring variables in Go?",
+                answers: [
+                    { text: "var", correct: false },
+                    { text: ":-", correct: false },
+                    { text: "const", correct: false },
+                    { text: "all the above", correct: true },
+                ],
+            },
+            {
+                question: "What is the correct way to declare a variable in Go?",
+                answers: [
+                    { text: "let x int =10", correct: false },
+                    { text: "var x int = 10", correct: true },
+                    { text: "variable x int = 10", correct: false },
+                    { text: "int x = 10", correct: false },
+                ],
+            },
+            {
+                question: "Who wrote 'Hamlet'?",
+                answers: [
+                    { text: "Mark Twain", correct: false },
+                    { text: "William Shakespeare", correct: true },
+                    { text: "Charles Dickens", correct: false },
+                    { text: "J.K. Rowling", correct: false },
+                ],
+            },
+        ];
+
+        const questionElement = document.getElementById("question");
+        const answerButtonsElement = document.getElementById("answer-buttons");
+        const nextButton = document.getElementById("next-btn");
+        const scoreCard = document.getElementById("score-card");
+        const scoreElement = document.getElementById("score");
+        const restartButton = document.getElementById("restart-btn");
+        const feedbackButton = document.getElementById("feedback-btn");
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreCard.style.display = "none";
+            nextButton.style.display = "block";
+            showQuestion();
+        }
+
+        function showQuestion() {
+            resetState();
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+
+            currentQuestion.answers.forEach((answer) => {
+                const button = document.createElement("button");
+                button.textContent = answer.text;
+                button.classList.add("btn");
+                button.addEventListener("click", selectAnswer);
+                answerButtonsElement.appendChild(button);
+            });
+        }
+
+        function resetState() {
+            nextButton.style.display = "none";
+            while (answerButtonsElement.firstChild) {
+                answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+            }
+        }
+
+        function selectAnswer(e) {
+            const selectedButton = e.target;
+            selectedButton.classList.add("selected");
+            Array.from(answerButtonsElement.children).forEach((button) => {
+                button.disabled = true;
+            });
+
+            const correct = questions[currentQuestionIndex].answers.some(
+                (answer) => answer.text === selectedButton.textContent && answer.correct
+            );
+
+            if (correct) {
+                score++;
+            }
+
+            nextButton.style.display = "block";
+        }
+
+        nextButton.addEventListener("click", () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            } else {
+                showScore();
+            }
+        });
+
+        function showScore() {
+            scoreCard.style.display = "block";
+            questionElement.textContent = "Quiz Completed!";
+            scoreElement.textContent = `${score} / ${questions.length} (${(
+                (score / questions.length) * 100
+            ).toFixed(2)}%)`;
+            nextButton.style.display = "none";
+        }
+
+        restartButton.addEventListener("click", startQuiz);
+
+        feedbackButton.addEventListener("click", () => {
+            window.location.href = "feedback.html";
+        });
+
+        startQuiz();
+    </script>
+</body>
+
+</html>

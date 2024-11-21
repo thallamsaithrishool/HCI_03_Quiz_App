@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       
+    <meta charset="UTF-8">
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz App</title>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/originals/7b/dc/e7/7bdce75d64ba8f75d7b71b14b23e411e.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        nav h1 {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00c8ff;
+        }
+
+        section {
+            flex: 1;
+            display: none;
+            padding: 20px;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero .button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero .button:hover {
+            background-color: #0056b3;
+        }
+
+        .settings-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .settings-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #00c8ff;
+        }
+
+        .toggle-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-group span {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .toggle-group button {
+            font-size: 1.5rem;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-group button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+        <!-- Navigation Bar -->
+        <nav>
+                <h1>Quiz App</h1>
+                <ul>
+                        <li><a href="index.html" onclick="switchSection('homepage')">Home</a></li>
+                        <li><a href="#" onclick="switchSection('settings')">Settings</a></li>
+                    </ul>
+            </nav>
+
+        <!-- Homepage Section -->
+        <section id="homepage" class="active">
+                <div class="hero">
+                        <h1>Welcome to the Quiz App</h1>
+                        <p>Test your knowledge, challenge yourself, and have fun while learning. Join us today and star
+                your jour ,to becoming a quiz master!</p>
+                        <div class="button-container">
+                                <a href="quiz.html" class="button">Get Started</a>
+                            </div>
+                    </div>
+            </section>
+
+        <!-- Settings Section -->
+        <section id="settings">
+                <div class="settings-container">
+                        <h1>Quiz Settings</h1>
+                        <form>
+                                <div class="toggle-group">
+                                        <span>Sound</span>
+                                        <button type="button" onclick="toggleSound(this)">🔊</button>
+                                    </div>
+
+                                <div class="toggle-group">
+                                        <span>Music</span>
+                                        <button type="button" onclick="toggleMusic(this)">🎵</button>
+                                    </div>
+                            </form>
+                    </div>
+            </section>
+
+        <!-- Footer -->
+        <footer>
+                © 2024 Quiz App. All rights reserved.
+            </footer>
+
+       
+    <script>
+        function switchSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function toggleSound(button) {
+            button.textContent = button.textContent === '🔊' ? '🔇' : '🔊';
+        }
+
+        function toggleMusic(button) {
+            button.textContent = button.textContent === '🎵' ? '🔕' : '🎵';
+        }
+    </script>
+</body>
+
+</html>

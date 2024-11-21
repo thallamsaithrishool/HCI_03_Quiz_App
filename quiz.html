@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: url('https://i.pinimg.com/originals/7b/dc/e7/7bdce75d64ba8f75d7b71b14b23e411e.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 0;
+        }
+
+        .header {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .card {
+            background: white;
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.5s ease;
+            z-index: 1;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .form input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form button {
+            width: 80%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form button:hover {
+            background-color: #0056b3;
+        }
+
+        .toggle-buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .toggle-button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #007bff;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-button.active {
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header" style="color: #0056b3;background-color: azure;">
+        Welcome to QuizMaster
+    </div>
+
+    <div class="container">
+        <div class="card" id="loginCard">
+            <img src="https://static.vecteezy.com/system/resources/previews/016/177/875/original/login-buttons-sign-label-speech-login-vector.jpg"
+                alt="Login Image">
+            <div class="form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+            </div>
+            <div class="toggle-buttons">
+                <button class="toggle-button active" onclick="showForm('loginCard')">Login</button>
+                <button class="toggle-button" onclick="showForm('registerCard')">Register</button>
+            </div>
+        </div>
+
+        <div class="card" id="registerCard" style="display: none;">
+            <img src="https://static.vecteezy.com/system/resources/previews/017/057/281/non_2x/register-now-buttons-sign-label-speech-bubble-register-now-vector.jpg"
+                alt="Register Image">
+            <div class="form">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button onclick="showForm('loginCard')">Register Now</button>
+            </div>
+            <div class="toggle-buttons">
+                <button class="toggle-button" onclick="showForm('loginCard')">Login</button>
+                <button class="toggle-button active" onclick="showForm('registerCard')">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showForm(cardId) {
+            document.getElementById("loginCard").style.display = "none";
+            document.getElementById("registerCard").style.display = "none";
+            document.getElementById(cardId).style.display = "block";
+        }
+
+        function login() {
+            const username = document.querySelector("#loginCard input[type='text']").value;
+            const password = document.querySelector("#loginCard input[type='password']").value;
+
+            if (username === "" || password === "") {
+                alert("Please enter both username and password.");
+            } else {
+                window.location.href = 'choice.html';
+            }
+        }
+    </script>
+</body>
+
+</html>

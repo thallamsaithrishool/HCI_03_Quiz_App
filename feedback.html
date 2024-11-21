@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       
+    <meta charset="UTF-8">
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feedback Page</title>
+       
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.pinimg.com/originals/7b/dc/e7/7bdce75d64ba8f75d7b71b14b23e411e.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            color: #0056b3;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffdd57;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 140px);
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .star-rating {
+            margin: 20px 0;
+        }
+
+        .fa-star {
+            font-size: 24px;
+            color: gray;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .fa-star.checked {
+            color: gold;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        textarea {
+            width: 80%;
+            max-width: 600px;
+            height: 100px;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            resize: none;
+            font-size: 16px;
+        }
+
+        button {
+            background: #0466bb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0354a6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+        <header>
+                <h1>Feedback Page</h1>
+                <nav>
+                        <ul>
+                                <li><a href="index.html">Home</a></li>
+
+                            </ul>
+                    </nav>
+            </header>
+
+        <main>
+                <h2>Your Feedback Matters!</h2>
+        <h1 style="color: aquamarine;"> Feedback on the Model!!</h1>
+                <div class="star-rating">
+                        <span class="fa fa-star" id="star1" onclick="rateProduct(1)"></span>
+                        <span class="fa fa-star" id="star2" onclick="rateProduct(2)"></span>
+                        <span class="fa fa-star" id="star3" onclick="rateProduct(3)"></span>
+                        <span class="fa fa-star" id="star4" onclick="rateProduct(4)"></span>
+                        <span class="fa fa-star" id="star5" onclick="rateProduct(5)"></span>
+                    </div>
+                <div class="feedback" id="feedback"></div>
+               
+                <textarea id="userExperience" placeholder="Tell us about your experience..."></textarea>
+               
+                <button onclick="submitFeedback()">Submit</button>
+                <div id="thank-you-message" style="margin-top: 20px; font-size: 18px; color: #d4edda;"></div>
+           
+    </main>
+
+        <footer>
+                <p>&copy; 2024 Your Company</p>
+            </footer>
+
+       
+    <script>
+        let selectedRating = 0;
+
+        function rateProduct(rating) {
+            selectedRating = rating;
+            const stars = document.querySelectorAll('.fa-star');
+            stars.forEach((star, index) => {
+                star.classList.remove('checked');
+                if (index < rating) {
+                    star.classList.add('checked');
+                }
+            });
+
+            const feedbackText = [
+                { text: 'Very Poor', emoji: '😞' },
+                { text: 'Below Average', emoji: '😕' },
+                { text: 'Average', emoji: '🙂' },
+                { text: 'Good', emoji: '😊' },
+                { text: 'Excellent!', emoji: '😃' },
+            ][rating - 1];
+
+            document.getElementById('feedback').textContent = `${feedbackText.text} ${feedbackText.emoji}`;
+        }
+
+        function submitFeedback() {
+            const userExperience = document.getElementById('userExperience').value.trim();
+            if (selectedRating > 0 && userExperience) {
+                document.getElementById('thank-you-message').textContent = 'Thank you for your feedback!';
+                console.log(`Rating: ${selectedRating}, Experience: ${userExperience}`);
+            } else if (selectedRating === 0) {
+                alert('Please select a rating before submitting!');
+            } else {
+                alert('Please share your experience before submitting!');
+            }
+        }
+    </script>
+</body>
+
+</html>
